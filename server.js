@@ -20,12 +20,16 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
 });
 
 
-
+// This function will help our Elves on the ground know where to look for Santa
 const visitLocation = () => {
+// Get the next stop on the route where Santa has NOT delivered presents to yet
   db.Route.findOne({ visited: false }).then((response) => {
+    // If Santa has visited all of the stops on his route, then he must be on the way back to the North Pole. 
     if (response === null) {
-      db.Location.findOneAndUpdate({},{$set: { message: "Santa is headed back to the North Pole. Merry Christmas to all, and to all a good night." }}).then((response)=>{
-        db.Location.findOne({}).then((response)=>{
+      // Update the database with Santa's message to the world.
+      db.Location.findOneAndUpdate({}, { $set: { message: "Santa is headed back to the North Pole. Merry Christmas to all, and to all a good night." } }).then((response) => {
+      // Retrieve Santa's current message, and display it in the console. 
+        db.Location.findOne({}).then((response) => {
           console.log(response._doc.message);
           // for testing purposes
           process.exit(1);
@@ -33,8 +37,15 @@ const visitLocation = () => {
       })
     }
     else {
-      db.Route.findOneAndUpdate({ location: response._doc.location }, { $set: { visited: true } }).then((result) => {
-        console.log("Santa has been sighted in " + result._doc.location)
+    // Santa still has more places to visit on his route! Update the next stop on his route to mark it as visited. Our Elves saw him there!
+      db.Route.findOneAndUpdate({ location: response._doc.location }, { $set: { visited: true } }).then((response) => {
+        // Update Santa's current Location to that of where he was last spotted!
+        db.Location.findOneAndUpdate({},{x:response._doc.x, y: response._doc.y, location: response._doc.location, message: response._doc.message }).then((response)=>{
+          // Retrieve Santa's current location and message, and display it in the console. 
+          db.Location.findOne({}).then((response) => {
+            console.log("Santa has been sighted in " + response._doc.location)
+          })
+        })
       })
     }
   })
@@ -79,17 +90,8 @@ app.listen(PORT, () => {
       // Set a new interval, to check Santa's Route every 3 minutes, for Santa's current location
       // Our helpers indicate he plans to visit 160+ cities in a span of 8 hours 
       const outForDelivery = setInterval(() => {
-        // Get the next stop on the route where Santa has NOT delivered presents to yet
         visitLocation();
-        // db.Route.findOne({ visited: false }).then((response) => { 
-        //   console.log(response)
-        // // Once we spot Santa, mark that city as having been visited 
-        // db.Route.findOneAndUpdate({location: response.location}, {$set:{visited: true}}).then((result)=>{console.log("Was marked as visited")})
-        // // // Update the Database "Location" with the current stop on Santa's route
-        // // db.Location.findOneAndUpdate({},{x: response.x, y: response.y, location: response.location, message: response.message}).then((result)=>{console.log(result, "Location Updated")})
-        // // Once Santa's work is complete, send one last message to the database
-        // });      
-        // Set to 5 seconds for testing purposes / 180k 
+      // Set to 5 seconds for testing purposes / 180k 
       }, 1000)
     }
     // Otherwise, we patiently wait for the Big Night.
