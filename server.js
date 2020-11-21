@@ -19,7 +19,24 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
 
 const santasLocation = db.Location.findOne({}).then((response) => { return response })
 
-const placesToGo = db.Route.find({ visited: false }).then((response) => { return response })
+// Search the database for all locations Santa hasn't visited yet
+const placeToGo = db.Route.find({ visited: false }).then((response) => {
+// credit for sort function to Amit Diwan @ https://www.tutorialspoint.com/sort-array-of-points-by-ascending-distance-from-a-given-point-javascript
+// Calculate the distance of each point from the given point
+  const distance = (coord1, coord2) => {
+    const x = coord2.x - coord1.x;
+    const y = coord2.y - coord1.y;
+    return Math.sqrt((x * x) + (y * y));
+  };
+  // Sort the array according to distance, nearest first
+  const sortByDistance = (coordinates, point) => {
+    const sorter = (a, b) => distance(a, point) - distance(b, point);
+    coordinates.sort(sorter);
+  };
+  sortByDistance(response, { x: santasLocation.x, y: santasLocation.y });
+  // Return only the first item - the nearest location to Santa
+  return response[0];
+})
 
 app.listen(PORT, () => {
   // On server startup, clear Santa's location
@@ -62,7 +79,7 @@ app.listen(PORT, () => {
       const outForDelivery = setInterval(() => {
         // Get Santa's current location
         // Get all stops on the route where Santa has NOT delivered presents to yet
-        console.log(santasLocation, placesToGo)
+        console.log(santasLocation, placeToGo)
         // Find the closest city to Santa's last location that hasn't been visited yet, and have our sources on the ground look for him there
         // Once we spot Santa, mark that city as having been visited 
         // Update the Database "Location" with the current stop on Santa's route

@@ -17,12 +17,12 @@ Once Santa has departed, the Server will periodically check the database for his
 ## Deployed Site: COMING SOON 
 
 ## Is Santa Coming to My Town?: 
-Santa's Helpers have informed us that he will visit no less than 160 cities across the world before 4am. 
+Santa's Helpers have informed me that he will visit no less than 160 cities across the world before 4am. 
 
 If you'd like to contribute additional city coordinates to search for Santa, please refer to the seed data and email nlamonaco86@gmail.com so I can let the elves know where else to look. 
 
 ## CURRENT ISSUES:
-We are aware that Santa's location does not seem to behave with regards to international time zones as we currently understand them. We have reached out to some of the foremost scientists in the world, who informed us that it's "just the Magic of the season."
+I am aware that Santa's location does not seem to behave with regards to international time zones as we currently understand them. I have reached out to some of the foremost scientists in the entire world, who informed me that it's "just the Magic of the season."
 
 ## Table of Contents
 

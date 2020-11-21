@@ -20,7 +20,13 @@ const db = [
         visited: false,
         message: ""
     },
-
+    {
+        x: 35.21115245205097,
+        y: -90.16451283089317,
+        location: "Memphis, TN USA",
+        visited: false,
+        message: ""
+    },     
     {
         x: 22.006006673093523,
         y: -157.31149415244397,
@@ -52,16 +58,30 @@ const santasLocation = {
     message: "Home"
 }
 
+// credit to Amit Diwan @ https://www.tutorialspoint.com/sort-array-of-points-by-ascending-distance-from-a-given-point-javascript
+// const coordinates =
+//     [{ x: 2, y: 6 }, { x: 14, y: 10 }, { x: 7, y: 10 }, { x: 11, y: 6 }, { x: 6, y: 2 }];
+const distance = (coord1, coord2) => {
+    const x = coord2.x - coord1.x;
+    const y = coord2.y - coord1.y;
+    return Math.sqrt((x * x) + (y * y));
+};
+const sortByDistance = (coordinates, point) => {
+    const sorter = (a, b) => distance(a, point) - distance(b, point);
+    coordinates.sort(sorter);
+};
+sortByDistance(db, { x: santasLocation.x, y: santasLocation.y });
+console.log(db);
 
 // filter places visited or not
 // const filterArr = db.filter(x => x.visited === false)
 
 // Sort by X/Y coordinates, return nearest to farthest
 // // compare sum of current x/y and sum of the x/y of the element being compared
-// console.log(db.sort((db, myLocation) => (myLocation.x + myLocation.y) - (db.x + db.y) ) );
+// console.log(db.sort((db, santasLocation) => (santasLocation.x + santasLocation.y) - (db.x + db.y) ) );
 
 // filter AND sort all in one shot
 // the math here isn't quite correct, though...
-// const santasRoute = db.filter(x => x.visited === false).sort((db, myLocation) => (myLocation.x + myLocation.y) - (db.x + db.y));
+// const santasRoute = db.filter(x => x.visited === false).sort((db, santasLocation) => (santasLocation.x + santasLocation.y) - (db.x + db.y));
 
 // console.log(santasRoute)
