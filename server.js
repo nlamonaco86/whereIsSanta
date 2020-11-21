@@ -14,29 +14,16 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
-const santasLocation = db.Location.findOne({}).then((response) => { return response })
-
-// Search the database for all locations Santa hasn't visited yet
-const placeToGo = db.Route.find({ visited: false }).then((response) => {
-// credit for sort function to Amit Diwan @ https://www.tutorialspoint.com/sort-array-of-points-by-ascending-distance-from-a-given-point-javascript
-// Calculate the distance of each point from the given point
-  const distance = (coord1, coord2) => {
-    const x = coord2.x - coord1.x;
-    const y = coord2.y - coord1.y;
-    return Math.sqrt((x * x) + (y * y));
-  };
-  // Sort the array according to distance, nearest first
-  const sortByDistance = (coordinates, point) => {
-    const sorter = (a, b) => distance(a, point) - distance(b, point);
-    coordinates.sort(sorter);
-  };
-  sortByDistance(response, { x: santasLocation.x, y: santasLocation.y });
-  // Return only the first item - the nearest location to Santa
-  return response[0];
-})
+// const visitLocation = () => {
+//   db.Route.findOne({ visited: false }).then((response) => {
+//     console.log(response._doc.location)
+//    db.Route.findOneAndUpdate({location: response._doc.location}, {$set:{visited: true}}).then((result)=>{console.log(result._doc.location + " was marked as visited")})
+//   })
+// }
 
 app.listen(PORT, () => {
   // On server startup, clear Santa's location
@@ -59,8 +46,8 @@ app.listen(PORT, () => {
       })
     })
   })
-  // If Santa isn't on his way yet, check the current time, and see if it's the Big Night.
-  // Santa's Helpers say he departs on 12-24-2020 @ 8:00pm sharp
+  // If Santa isn't on his way yet, check the current time every five seconds, and see if it's the Big Night.
+  // Santa's Helpers say he departs on 12-24-2020 @ 20:00 sharp!
   const onHisWay = setInterval(() => {
     let today = new Date();
     let date = ("0" + today.getDate()).slice(-2);
@@ -77,19 +64,22 @@ app.listen(PORT, () => {
       // Set a new interval, to check Santa's Route every 3 minutes, for Santa's current location
       // Our helpers indicate he plans to visit 160+ cities in a span of 8 hours 
       const outForDelivery = setInterval(() => {
-        // Get Santa's current location
-        // Get all stops on the route where Santa has NOT delivered presents to yet
-        console.log(santasLocation, placeToGo)
-        // Find the closest city to Santa's last location that hasn't been visited yet, and have our sources on the ground look for him there
-        // Once we spot Santa, mark that city as having been visited 
-        // Update the Database "Location" with the current stop on Santa's route
-        // Once Santa's work is complete, send one last message to the database
+        // Get the next stop on the route where Santa has NOT delivered presents to yet
+        visitLocation()
+        // db.Route.findOne({ visited: false }).then((response) => { 
+        //   console.log(response)
+        // // Once we spot Santa, mark that city as having been visited 
+        // db.Route.findOneAndUpdate({location: response.location}, {$set:{visited: true}}).then((result)=>{console.log("Was marked as visited")})
+        // // // Update the Database "Location" with the current stop on Santa's route
+        // // db.Location.findOneAndUpdate({},{x: response.x, y: response.y, location: response.location, message: response.message}).then((result)=>{console.log(result, "Location Updated")})
+        // // Once Santa's work is complete, send one last message to the database
+        // });      
         // Set to 5 seconds for testing purposes / 180k 
       }, 5000)
     }
-    // Otherwise, we patiently wait.
+    // Otherwise, we patiently wait for the Big Night.
     else {
-      console.log("It's " + (12 - month) + " month, " + (24 - date) + " days, " + Math.abs(20 - hours) + " hours, " + Math.abs(00 - minutes) + "minutes, and " + Math.abs(60 - seconds) + " seconds until the Big Day...")
+      console.log("It's " + (12 - month) + " month, " + (24 - date) + " days, " + Math.abs(20 - hours) + " hours, " + Math.abs(00 - minutes) + "minutes, and " + Math.abs(60 - seconds) + " seconds until the Big Night...")
     }
   }, 5000)
 });

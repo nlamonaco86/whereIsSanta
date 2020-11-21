@@ -26,7 +26,7 @@ const db = [
         location: "Memphis, TN USA",
         visited: false,
         message: ""
-    },     
+    },
     {
         x: 22.006006673093523,
         y: -157.31149415244397,
@@ -72,6 +72,7 @@ const sortByDistance = (coordinates, point) => {
 };
 sortByDistance(db, { x: santasLocation.x, y: santasLocation.y });
 console.log(db);
+
 
 // filter places visited or not
 // const filterArr = db.filter(x => x.visited === false)
