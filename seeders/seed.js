@@ -8,9 +8,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
 
 // Santa's starting location is the North Pole, but you can change it to anywhere else if you'd like him to start from there.
 const santasLocation = [{
-  x: 40.71194499119388,
-  y: -73.99693894907112,
-  location: "New York, NY USA",
+  x: 90.0000,
+  y: 135.0000,
+  location: "Santa's Workshop - North Pole",
   visited: false,
   message: "Santa is currently at the North Pole, preparing for the Big Night."
 }];
