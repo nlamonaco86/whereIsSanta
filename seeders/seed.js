@@ -12,7 +12,7 @@ const santasLocation = [{
   y: -73.99693894907112,
   location: "New York, NY USA",
   visited: false,
-  message: "Home"
+  message: "Santa is currently at the North Pole, preparing for the Big Night."
 }];
 
 // All of the stops on Santa's route, they will be sorted according to the "Traveling Salesman" problem
