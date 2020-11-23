@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 let express = require("express");
 let mongoose = require("mongoose");
 const db = require("./models");
@@ -21,12 +21,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
 
 // Set the date and time when Santa will begin his journey
 // His helps tell us he departs on 2020-12-24 8:00 sharp!
-let theBigNight = "2020-12-24 20:00"
+let theBigNight = "2020-11-21 20:00"
 
 // Once he departs, Santa has 9 hours to reach all of the locations on his route
 // This equation will determine how many stops are on the route, and determines how fast the sleigh will need to go
 // In order to reach everyone in time. (work in progress)
-let deliveryInterval = 1000
+let deliveryInterval = 4000
 
 // This function will help our Elves on the ground know where to look for Santa
 const visitLocation = () => {

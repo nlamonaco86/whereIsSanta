@@ -37,6 +37,14 @@ Once you've cloned the repo,
 npm install
 ```
 
+Create a file in the root directory called .env
+In this file, write the following (without placeholders, of course):
+```
+EMAIL_SERVICE=serviceName
+EMAIL_USERNAME=yourName@email.com
+EMAIL_PASSWORD=yourPassword
+```
+
 Next, navigate to the seeders folder
 ```
 npm run seed
@@ -53,8 +61,9 @@ node server
 
 ## Usage
 ![Node.js Console](./public/assets/screenshot.png)
-![Front End](./public/assets/screenshot5.png)
 ![Front End](./public/assets/screenshot4.png)
+![Front End](./public/assets/screenshot7.png)
+![Front End](./public/assets/screenshot6.png)
 
 ## Questions
 

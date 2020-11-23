@@ -12,6 +12,40 @@
   font-size: 48px;
 }
 
+.xmasSm{
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 24px;
+}
+
 .store{
   border-radius: 175px;
+}
+
+input{
+  width:100%;
+  resize: vertical;
+  padding:5px;
+  border-radius:25px;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:40px;
+} 
+
+textarea {
+  width:100%;
+  resize: vertical;
+  padding:15px;
+  border-radius: 35px;
+  border: 1;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:150px;
+}
+
+.btnCute{
+  background-color: yellow;
+  color: black;
+  font-size: 24px;
+  font-family: 'Mountains of Christmas', cursive;
+  min-width: 275px;
+  border-radius: 20px;
+  margin-bottom: 40px;
 }
