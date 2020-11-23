@@ -14,6 +14,10 @@ The server will, on startup, communicate with the elves to see if Santa is at th
 
 Once Santa has departed, the Server will periodically check the database for his current location using our worldwide network of elves on the ground. Each time Santa is located, our database will automatically update, and the app will display his current location on the map. 
 
+## Write to Santa
+
+Write a letter to Santa, and he'll send back a personalized e-mail! 
+
 ## Deployed Site: COMING SOON 
 
 ## Is Santa Coming to My Town?: 
@@ -58,6 +62,8 @@ Finally,
 ```
 node server
 ```
+
+If there are no environment variables for email set, the e-mail features will not work. Note that gmail and other providers may require you to enable "less secure" options in order to work with Nodemailer - consider using a spare or temporary email for this purpose. 
 
 ## Usage
 ![Node.js Console](./public/assets/screenshot.png)
