@@ -20,8 +20,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
 });
 
 // Set the date and time when Santa will begin his journey
-// His helpers tell us he departs on 2020-12-24 8:00 sharp!
-let theBigNight = "2020-12-24 20:00"
+// His helpers tell us he departs on 2020-12-24 @ 8:00 sharp (Eastern Standard Time)!
+// Heroku uses UTC, so...
+let theBigNight = "2020-12-24 15:00"
 
 // Once he departs, Santa has 9 hours to reach all of the locations on his route
 // This equation will determine how many stops are on the route, and determines how fast the sleigh will need to go
