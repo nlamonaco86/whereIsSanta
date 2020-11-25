@@ -8,7 +8,7 @@ navigator.geolocation.getCurrentPosition((location) => {
 });
 
 // Call the API every 3 minutes and 40 seconds, and obtain Santa's latest location from his helpers worldwide.
-const lotsOfCheer = setInterval(() => {
+const lotsOfCheer = () => {
   fetch("/api/location/", { type: "GET" }).then((response) => {
     return response.json();
   }).then((response) => {
@@ -33,8 +33,10 @@ const lotsOfCheer = setInterval(() => {
     else { document.getElementById("message").innerHTML = response.message }
     // Can I use a grid and CSS to overlay points on a map? 
   })
-},
-  220000)
+}
+
+setTimeout(()=>{ lotsOfCheer(); }, 3000);
+setInterval(() => { lotsOfCheer(); }, 220000);
 
 window.onload = () => {
 
