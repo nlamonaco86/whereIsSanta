@@ -14,13 +14,14 @@ The server will, on startup, communicate with the elves to see if Santa is at th
 
 Once Santa has departed, the Server will periodically check the database for his current location using our worldwide network of elves on the ground. Each time Santa is located, our database will automatically update, and the app will display his current location on the map. 
 
-If you've allowed Location permissions, if Santa is near your area, he will inform you that he'll have to come back later, once everyone is asleep. 
+If you've allowed Location permissions and Santa is near your area, he will inform you if he'll have to come back later, once everyone is asleep. 
 
 ## Write to Santa
 
 Write a letter to Santa, and he'll send back a personalized e-mail! He's been incredibly busy, as usual, so this year he's had an amateur web developer automate his letter-writing process with Nodemailer. 
 
-## Deployed Site: COMING SOON 
+## Deployed Site: 
+https://whereissanta.herokuapp.com/ 
 
 ## Is Santa Coming to My Town?: 
 Santa's Helpers have informed me that he will visit no less than 160 cities across the world before 4am. 
