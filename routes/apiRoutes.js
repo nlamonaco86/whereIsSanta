@@ -14,7 +14,16 @@ let transporter = nodemailer.createTransport({
 module.exports = (app) => {
   app.get("/api/location", (req, res) => {
     db.Location.findOne({}).then(response => {
-      res.json(response._doc);
+      res.json(response);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+  });
+
+  app.get("/api/facts", (req, res) => {
+    db.SantaFact.find({}).then(response => {
+      res.json(response[Math.floor(Math.random() * response.length)]);
     })
     .catch(err => {
       res.json(err);

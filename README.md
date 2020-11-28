@@ -70,9 +70,9 @@ If there are no environment variables for email set, the e-mail features will no
 
 ## Usage
 ![Node.js Console](./public/assets/screenshot.png)
-![Front End](./public/assets/scrn1.png)
-![Front End](./public/assets/scrn2.png)
-![Front End](./public/assets/scrn3.png)
+![Front End](./public/assets/ss1.png)
+![Front End](./public/assets/ss2.png)
+![Front End](./public/assets/ss3.png)
 
 ## Questions
 

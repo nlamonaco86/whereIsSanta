@@ -35,9 +35,20 @@ const lotsOfCheer = () => {
   })
 }
 
+const alwaysCurious = () => {
+  fetch("/api/facts", { type: "GET" }).then((response) => {
+    return response.json();
+  }).then((response) => {
+    document.getElementById("fact").innerHTML = response.fact
+  })
+}
+
 // Search for Santa shortly after the page loads, then again every 3m 40s.
 setTimeout(()=>{ lotsOfCheer(); }, 3000);
 setInterval(() => { lotsOfCheer(); }, 180000);
+
+setTimeout(()=>{ alwaysCurious(); }, 3000);
+setInterval(() => { alwaysCurious(); }, 12000);
 
 window.onload = () => {
 
