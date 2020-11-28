@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="theme-color" content="#8B0000">
+
+	<link rel="icon" href="/favicon.ico"/>
+  <link rel="apple-touch-icon" href="./favicon.ico">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+
+  <script src="/assets/js/santa.js"></script>
+  <script defer src="/assets/js/jquery-scroll.js"></script>
+  <script defer src="/assets/js/santa.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
+
+  <title>Where is Santa?</title>
+
+</head>
+
+<body>
+  
+  <header class="masthead d-flex">
+    <div class="container text-center my-auto">
+      <h1 class="mb-1 text-white xmas">Where is Santa?</h1>
+      <a class="btn btn-warning btn-xl js-scroll-trigger xmasSm mt-4" href="#map">Let's find him!</a>
+    </div>
+    <div class="overlay"></div>
+  </header>
+  <!-- Gmap Div -->
+  <!-- Map Div -->
+  <header class="bg-success text-white text-center" id="map">
+    <div class="container d-flex align-items-center flex-column">
+      <img class="img-fluid mb-5 mt-5 store" src="assets/images/map.jpg" alt="World Map" />
+    </div>
+  </header>
+
+  <!-- News Section -->
+  <section class="text-white mb-0">
+    <div class="container">
+
+      <!-- Heading-->
+      <h2 class="text-center text-uppercase text-white xmas" style="padding-top:2rem;" id="title">Locating Santa
+        Claus...
+      </h2>
+
+      <!-- Content-->
+      <div class="row">
+        <div class="col-lg-12 ml-auto xmasSm">
+          <p class="text-center" id="location"></p>
+          <p class="text-center" id="coordinates"></p>
+          <p class="text-center" id="message" style="padding-bottom:2rem;"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Letter Section -->
+  <section class="bg-white text-dark mb-0">
+
+    <!-- Heading-->
+    <h2 class="text-center text-uppercase text-dark xmas" style="padding-top:2rem;">Write to Santa!</h2>
+    <h4 class="text-center text-uppercase text-dark xmasSm" style="padding-top:2rem;">We'll make sure it reaches the
+      North Pole</h4>
+    <!-- Content-->
+    <div class="container">
+      <div id="error" style="padding:10px;border-radius:25px;"></div>
+      <form id="niceList">
+        <div class="row">
+          <div class="col">
+            <input type="text" class="mt-4" placeholder="First name" id="name">
+            <input type="text" class="mt-4" placeholder="E-Mail" id="email">
+            <textarea class="mt-4" rows="3" placeholder="Your message to Santa Claus..."></textarea>
+            <div class="d-flex justify-content-center">
+              <button class="text-center btnCute mt-4 bg-warning">Send</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").then(reg => {
+          console.log("We found your service worker file!", reg);
+        });
+      });
+    }
+  </script> -->
+
+</body>
+
+</html>
