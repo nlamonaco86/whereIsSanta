@@ -39,7 +39,7 @@ const alwaysCurious = () => {
   fetch("/api/facts", { type: "GET" }).then((response) => {
     return response.json();
   }).then((response) => {
-    document.getElementById("fact").innerHTML = response.fact
+    document.getElementById("fact").innerHTML = response.message
   })
 }
 

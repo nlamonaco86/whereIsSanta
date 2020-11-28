@@ -73,6 +73,7 @@ If there are no environment variables for email set, the e-mail features will no
 ![Front End](./public/assets/ss1.png)
 ![Front End](./public/assets/ss2.png)
 ![Front End](./public/assets/ss3.png)
+![Front End](./public/assets/ss4.png)
 
 ## Questions
 
