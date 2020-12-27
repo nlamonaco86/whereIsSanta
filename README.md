@@ -43,12 +43,16 @@ npm run seed
 ```
 
 Then, in the root directory:
+Take a look at server.js, and edit the dates if necessary for testing
+
+Finally, 
+
 ```
 node server
 ```
 
 ## Usage
-screenshots go here
+![Node.js Console](./public/assets/screenshot.png)
 
 ## Questions
 

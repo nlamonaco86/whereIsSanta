@@ -1,12 +1,12 @@
 let db = require("../models");
 
 module.exports = function (app) {
-  app.get("/api/locations", function (req, res) {
-  });
-
-  app.put("/api/locations/:id", function (req, res) {
-  });
-
-  app.post("/api/locations/create", function (req, res) {
+  app.get("/api/location", (req, res) => {
+    db.Location.findOne({}).then(response => {
+      res.json(response._doc);
+    })
+    .catch(err => {
+      res.json(err);
+    });
   });
 };

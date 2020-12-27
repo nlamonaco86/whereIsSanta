@@ -19,6 +19,14 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/santaDb", {
   useFindAndModify: false
 });
 
+// Set the date and time when Santa will begin his journey
+// His helps tell us he departs on 2020-12-24 8:00 sharp!
+let theBigNight = "2020-12-24 20:00"
+
+// Once he departs, Santa has 9 hours to reach all of the locations on his route
+// This equation will determine how many stops are on the route, and determines how fast the sleigh will need to go
+// In order to reach everyone in time. (work in progress)
+let deliveryInterval = 1000
 
 // This function will help our Elves on the ground know where to look for Santa
 const visitLocation = () => {
@@ -32,7 +40,7 @@ const visitLocation = () => {
         db.Location.findOne({}).then((response) => {
           console.log(response._doc.message);
           // for testing purposes
-          process.exit(1);
+          // process.exit(1);
         })
       })
     }
@@ -73,7 +81,6 @@ app.listen(PORT, () => {
     })
   })
   // If Santa isn't on his way yet, check the current time every five seconds, and see if it's the Big Night.
-  // Santa's Helpers say he departs on 12-24-2020 @ 20:00 sharp!
   const onHisWay = setInterval(() => {
     let today = new Date();
     let date = ("0" + today.getDate()).slice(-2);
@@ -84,7 +91,7 @@ app.listen(PORT, () => {
     let seconds = today.getSeconds();
     let currentTime = year + "-" + month + "-" + date + " " + hours + ":" + minutes
     // If it's the big night, our server will mark Santa as onHisWay and our sources worldwide will begin tracking his route!
-    if (currentTime >= "2020-11-20 20:00") {
+    if (currentTime >= theBigNight) {
       clearInterval(onHisWay);
       console.log("Santa is on his Way!")
       // Set a new interval, to check Santa's Route every 3 minutes, for Santa's current location
@@ -92,7 +99,7 @@ app.listen(PORT, () => {
       const outForDelivery = setInterval(() => {
         visitLocation();
       // Set to 5 seconds for testing purposes / 180k 
-      }, 1000)
+      }, deliveryInterval)
     }
     // Otherwise, we patiently wait for the Big Night.
     else {
